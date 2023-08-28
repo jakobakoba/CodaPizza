@@ -8,12 +8,16 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 import com.bor96dev.codapizza.R
+import com.bor96dev.codapizza.model.Pizza
 import com.bor96dev.codapizza.model.Topping
 import com.bor96dev.codapizza.model.ToppingPlacement
 
@@ -46,12 +50,23 @@ private fun ToppingsList(
 
             ToppingCell(
                 topping = topping,
-                placement = ToppingPlacement.Left,
-                onClickTopping = { /*TODO*/ })
+                placement = pizza.toppings[topping],
+                onClickTopping = {
+                    var isOnPizza = pizza.toppings[topping] != null
+                    pizza.withTopping(
+                        topping = topping,
+                        placement = if(isOnPizza){
+                            null
+                        } else {
+                            ToppingPlacement.All
+                        }
+                    )
+                })
         }
     }
 }
 
+private var pizza by mutableStateOf(Pizza())
 @Composable
 private fun OrderButton(
     modifier: Modifier = Modifier,

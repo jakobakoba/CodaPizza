@@ -30,7 +30,7 @@ fun ToppingCell(
             .padding(vertical = 4.dp, horizontal = 16.dp)
     ) {
         Checkbox(
-            checked = placement != null, onCheckedChange = {}
+            checked = placement != null, onCheckedChange = { onClickTopping() }
         )
 
         Column(
