@@ -1,5 +1,6 @@
 package com.bor96dev.codapizza.ui
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,7 @@ fun ToppingCell(
     onClickTopping: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    Log.d("Money", "Called ToppingCell for $topping")
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
